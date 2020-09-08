@@ -39,9 +39,9 @@ pipeline {
 		stage('Deploy blue container') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
-					/*sh '''
+					sh '''
 						kubectl delete rc blue
-					'''*/
+					'''
 					sh '''
 						kubectl apply -f ./Blue/blue-controller.json
 					'''
@@ -92,9 +92,9 @@ pipeline {
 		stage('Deploy Green container') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
-					/*sh '''
+					sh '''
 						kubectl delete rc green
-					'''*/
+					'''
 					sh '''
 						kubectl apply -f ./Green/green-controller.json
 					'''
