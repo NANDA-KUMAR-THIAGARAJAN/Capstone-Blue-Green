@@ -4,7 +4,7 @@
    "metadata":{
       "name":"bluelb",
       "labels":{
-         "app":"bluegreenlb"
+         "app":"bluelb"
       }
    },
    "spec":{
