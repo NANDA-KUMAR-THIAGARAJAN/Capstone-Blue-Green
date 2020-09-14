@@ -40,6 +40,9 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
+						kubectl delete rc
+					'''
+					sh '''
 						kubectl apply -f ./Blue/blue-controller.json
 					'''
 				}
@@ -49,9 +52,6 @@ pipeline {
 		stage('Create the service in the cluster, redirect to blue') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
-					sh '''
-						kubectl scale --replicas=0 rc
-					'''
 					sh '''
 						kubectl apply -f ./Blue/blue-service.json
 					'''
@@ -93,7 +93,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
-						kubectl scale --replicas=0 rc
+						kubectl delete rc
 					'''
 					sh '''
 						kubectl apply -f ./Green/green-controller.json
