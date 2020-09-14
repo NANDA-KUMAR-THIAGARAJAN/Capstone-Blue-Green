@@ -15,9 +15,7 @@
          }
       ],
       "selector":{
-         "matchLabels":{
-            "app":"blue"
-         }
+         "app":"blue"
       },
       "type": "LoadBalancer"
    }
