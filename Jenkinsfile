@@ -50,6 +50,9 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
+						kubectl scale --replicas=0 rc
+					'''
+					sh '''
 						kubectl apply -f ./Blue/blue-service.json
 					'''
 				}
@@ -89,6 +92,9 @@ pipeline {
 		stage('Deploy Green container') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
+					sh '''
+						kubectl scale --replicas=0 rc
+					'''
 					sh '''
 						kubectl apply -f ./Green/green-controller.json
 					'''
