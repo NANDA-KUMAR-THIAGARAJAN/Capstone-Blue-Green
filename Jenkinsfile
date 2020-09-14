@@ -40,7 +40,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
-						kubectl apply -f ./Blue/blue-controller.json
+						kubectl apply deployment -f ./Blue/blue-controller.json
 					'''
 				}
 			}
@@ -50,7 +50,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-static') {
 					sh '''
-						kubectl apply -f ./Blue/blue-service.json
+						kubectl apply deployment -f ./Blue/blue-service.json
 					'''
 				}
 			}
