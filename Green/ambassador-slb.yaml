@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: greenlb
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: greenlb_mapping
+      prefix: /
+      host: devops.verventus.com
+      service: greenlb:8000
+      use_websocket: true
+  labels:
+    app: greenlb
+spec:
+    selector:
+        app: green
+    ports:
+    - port: 8000
+      targetPort: 80
+    type: LoadBalancer
